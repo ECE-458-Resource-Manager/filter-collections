@@ -673,6 +673,11 @@ FilterCollections = function (collection, settings) {
 
     Template[_template].helpers({
       fcResults: function(){
+
+        // Patch for non-reactivity as described here:
+        // https://github.com/julianmontagna/filter-collections/issues/26
+        _deps.query.depend();
+
         return self.query.getResults();
       },
       fcSort: function(){
